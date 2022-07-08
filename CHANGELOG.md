@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/OpenSourceUnityPackage/LSystem/compare/1.0.0...1.0.1) (2022-07-08)
+
+
+### Bug Fixes
+
+* clean project and fix ci test ([dcd155e](https://github.com/OpenSourceUnityPackage/LSystem/commit/dcd155e961ff458627f4cedff7a7bea15fd25037))
+
 # 1.0.0 (2022-07-06)
 
 
