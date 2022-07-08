@@ -10,8 +10,13 @@ namespace LSystemPackage
     [Serializable]
     public class LSystemActionVariable : ILSystemActionVariable
     {
+        [System.Serializable]
+        public class CharEvent : UnityEvent<char>
+        {
+        }
+        
         public string symbol;
-        public UnityEvent<char> action;
+        public CharEvent action;
 
         public char Symbol => symbol.First();
 

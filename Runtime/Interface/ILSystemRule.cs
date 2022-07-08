@@ -7,6 +7,6 @@
     /// </summary>
     public interface ILSystemRule
     {
-        public abstract string SequenceToInsert { get; }
+        string SequenceToInsert { get; }
     }
 }

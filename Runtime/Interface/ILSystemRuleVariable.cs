@@ -7,8 +7,8 @@ namespace LSystemPackage
     /// </summary>
     public interface ILSystemRuleVariable
     {
-        public abstract char Symbol { get; }
+        char Symbol { get; }
 
-        public abstract ILSystemRule Rule { get; }
+        ILSystemRule Rule { get; }
     }
 }

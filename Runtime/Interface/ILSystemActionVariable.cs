@@ -7,8 +7,8 @@ namespace LSystemPackage
     /// </summary>
     public interface ILSystemActionVariable
     {
-        public abstract char Symbol { get; }
+        char Symbol { get; }
 
-        public abstract void OnSymbolFind();
+        void OnSymbolFind();
     }
 }
