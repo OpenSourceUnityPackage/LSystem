@@ -16,28 +16,22 @@ jobs:
   buildAndTestForSomePlatforms:
     # Prevent running on base template
     if: github.repository != 'OpenSourceUnityPackage/PackageTemplate'
-    name: Test Unity version ${{ matrix.unityVersion }} | Platform ${{ matrix.targetPlatform }} | Test mode ${{ matrix.testMode }}
+    name: Test Unity version = ${{ matrix.unityVersion }} | Test mode = ${{ matrix.testMode }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
         testMode:
-          - playmode
-          - editmode
+          #- playmode
+          #- editmode
+          - all
         unityVersion:
           # Main LTS version : https://unity3d.com/unity/qa/lts-releases
-          - 2019.4.38f1
-          - 2020.3.33f1
-          - 2021.3.1f1
-        targetPlatform:
-          # - StandaloneOSX # Build a macOS standalone (Intel 64-bit).
-          - StandaloneWindows64 # Build a Windows 64-bit standalone.
-          # - StandaloneLinux64 # Build a Linux 64-bit standalone.
-          # - iOS # Build an iOS player.
-          # - Android # Build an Android player.
-          # - WebGL # WebGL.
+          - 2019.4.40f1
+          - 2020.3.36f1
+          - 2021.3.6f1
         projectPath:
-          - ./package/${{ github.repository }}
+          - package/${{ github.event.repository.name }}
           
     steps:
       # Checkout sandbox project
@@ -81,7 +75,8 @@ jobs:
             
       # Run tests
       - name: "Run tests"
-        uses: game-ci/unity-test-runner@main
+        id: runTests
+        uses: trudeaua21/unity-test-runner@main
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
           unityVersion: ${{ matrix.unityVersion }}
@@ -89,8 +84,8 @@ jobs:
           testMode: ${{ matrix.testMode }}
           packageMode: true
            # List of parameters here : https://docs.unity3d.com/Manual/CommandLineArguments.html
-          customParameters: -nographics assemblyFilters:+[YourCompany].[YourPackageName].*,-*Tests*
-          coverageOptions: 'generateAdditionalMetrics;generateHtmlReport;generateBadgeReport'
+          customParameters: -nographics
+          coverageOptions: 'generateAdditionalMetrics;generateHtmlReport;generateBadgeReport;assemblyFilters:+open-source-unity-package.l-system.*,-*Tests*'
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
           
@@ -98,6 +93,6 @@ jobs:
       - name: Upload coverage results
         uses: actions/upload-artifact@v3
         with:
-          name: Package Coverage results (edit + play, ${{ matrix.unityVersion }}-${{ matrix.targetPlatform }}-${{ matrix.testMode }}
-          path: ${{ steps.testRunner.outputs.coveragePath }}
+          name: Package Coverage results ${{ matrix.unityVersion }}-${{ matrix.testMode }}
+          path: ${{ steps.runTests.outputs.coveragePath }}
           retention-days: 1
