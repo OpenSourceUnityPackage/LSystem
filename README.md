@@ -67,7 +67,12 @@ To integrate this package, add it to your project using the unity package manage
 
 The functionality of L-System is located in the static LSystem class. You can therefore call them whenever you want.
 To use its functions, you will have to create your own class inherited from the given interface.
-Let the demonstration and the commentary guide you. 
+Let the demonstration and the commentary guide you.
+
+Here an example of usage with sctipable object:  
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/55276408/178115240-bf386582-c930-4fa3-9453-8bbd5585fd43.png" />
+</p>
 
 ## How to contribute ?
 To contribute, you can fork this repository and submit your merge request in the development branch. 
