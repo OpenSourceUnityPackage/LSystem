@@ -1,5 +1,5 @@
-<h1 align="center" style="border-bottom: none;">Unity package template📦 </h1>
-<h3 align="center">Fully automated version management and package publishing</h3>
+<h1 align="center" style="border-bottom: none;">L-system for unity📦 </h1>
+<h3 align="center">A simple and robust solution for procedure generation</h3>
 <p align="center">
   <a href="https://github.com/semantic-release/semantic-release/actions?query=workflow%3ATest+branch%3Amaster">
     <img alt="Build states" src="https://github.com/semantic-release/semantic-release/workflows/Test/badge.svg">
@@ -20,37 +20,60 @@
   </a>
 </p>
 
+<p align="center">
+  <img height="300" width="300" src="https://user-images.githubusercontent.com/55276408/178099581-f2ed15a1-b1ee-43bf-a5c7-8e923eabb277.png" />
+  <img height="300" width="300" src="https://user-images.githubusercontent.com/55276408/178099583-7803ed7f-9c37-44c4-bc4e-b8ae6d0f2ad1.png" />
+  <img height="300" width="300" src="https://user-images.githubusercontent.com/55276408/178099584-aa1a1911-e007-424d-8cb8-bdbc3185d1e9.png" />
+</p>
+
 ## What is it ?
-Package template is a template repository to create quickly package for unity.
+An L-system or Lindenmayer system is a tool for creating a grammatical sequence based on rules. An L-system consists of an alphabet of symbols that can be used to create strings, a collection of production rules that expand each symbol into a larger string of symbols, an initial "axiom" string from which to begin construction, and a mechanism for translating the generated strings into geometric structures.  
+This sequence can be used later by a reader for procedural generation purposes.
 
-Unity package allow you to create independents features and include it like puzzle in your unity project to include its features.
+## Examples :
+Let's look at a simple case to understand the algorithm.  
 
-This architecture is based on unity package layout presented [here](https://docs.unity3d.com/Manual/cus-layout.html)
+**Example 1: Algae**  
+    variables : A B  
+    boot sequence : A  
+    rules  : (A → AB), (B → A)  
 
-I encourage you to create sample that can be imported independently thanks to unity package manager for more modularity.
-You can for example create demo, independent feature in your package theme...
-Sample folder contain character '~' that mean that this folder will be ignored by unity.
-All sample must be referenced in package.json.
+which produces:  
+    n = 0 : A  
+    n = 1 : AB (A → AB)  
+    n = 2 : ABA (A → AB) + (B → A) + (A → AB)  
+    n = 3 : ABAAB  
+    n = 4 : ABAABABA  
+    n = 5 : ABAABABAABAAB  
+    n = 6 : ABAABABAABAABABAABABA  
+    n = 7 : ABAABABAABAABABAABABAABAABABAABAAB  
+    
+Let's look at an example where we will be executing code using a generated sequence:   
 
-Please don't change the license, and don't forget to update your changelog file and package version in package.json.
-For clear information about your package, make a demonstration, add description in GitHub and information in README.
+**Example 2: Fractal plant**  
+See also: Barnsley fern  
+    variables : X F  
+    constants : + − [ ]  
+    start  : X  
+    rules  : (X → F+[[X]-X]-F[-FX]+X), (F → FF)  
+    angle  : 25°  
 
-## How to create new package ?
-Follow these step to create package based on this template:
+Here, F means "draw forward", − means "turn right 25°", and + means "turn left 25°". X does not correspond to any drawing action and is used to control the evolution of the curve. The square bracket "[" corresponds to saving the current values for position and angle, which are restored when the corresponding "]" is executed.  
+This example with a bit of random give the image illustrated above.
+    
+## How to use this package ?
+An advanced application of this package is demonstrated in the Sample folder with a unity scene.  
+To integrate this package, add it to your project using the unity package manager and the git url or download it and insert it into your project (you will miss the update).  
 
-1: Click on "Use this template" button to create a new repository based on this template.
-![Capture d’écran 2022-03-05 210916](https://user-images.githubusercontent.com/55276408/156898721-99195bf3-02c1-41f5-9bc8-483a9b65c55a.png)
+The functionality of L-System is located in the static LSystem class. You can therefore call them whenever you want.
+To use its functions, you will have to create your own class inherited from the given interface.
+Let the demonstration and the commentary guide you. 
 
-2: In this step, we need add information about package that will be used to generate your package thanks to github action.
-- Select the owner (by default you, if you want to create a package for this repository, please select OpenSourceUnityPackage). This repository name will be used to generate the package name.
-- Then enter your project name. This name is very important because it will be used to generate the package name inside unity. For example TestPackageUnity will become open-source-unity-package.test-package-unity according to unity convention.
-- Step 2, 3 and 4 are optional. You can add description, select public repository and include all branch (to include git flow).
-- Now click on "select repository from template" to done this process
-![Capture d’écran 2022-03-05 211005](https://user-images.githubusercontent.com/55276408/156898722-cc3bf2aa-b6bd-44a1-9f74-a63d9543d1f1.png)
+## How to contribute ?
+To contribute, you can fork this repository and submit your merge request in the development branch. 
+Please note that you need to use Andular typo to integrate your feature/repair into the changelog and create a new version.
 
-Well done ! Your package is now available. You can now develop it. Don't forgot to add complete description of it inside your README, unity and github to be community friendly ! May the opensource spirit guide your precious step ;D
-
-## Angular typo
+### Angular typo
 ```
 <type>(<scope>): <short summary>
   │       │             │
@@ -65,7 +88,7 @@ Well done ! Your package is now available. You can now develop it. Don't forgot 
 The `<type>` and `<summary>` fields are mandatory, the `(<scope>)` field is optional.
 
 
-### Type
+#### Type
 
 Must be one of the following:
 * Visible in changelog: 
