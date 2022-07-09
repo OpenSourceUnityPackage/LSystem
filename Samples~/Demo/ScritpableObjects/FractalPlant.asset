@@ -23,5 +23,5 @@ MonoBehaviour:
     - sequenceToInsert: FF
       probabilityToIgnore: 0
     useRandom: 0
-  iterationCount: 2
+  iterationCount: 6
   rootSequence: X
