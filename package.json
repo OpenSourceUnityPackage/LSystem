@@ -1,9 +1,9 @@
 {
   "name": "com.open-source-unity-package.l-system",
   "displayName": "LSystem",
-  "description": "",
+  "description": "An L-system or Lindenmayer system is a tool for creating a grammatical sequence based on rules. An L-system consists of an alphabet of symbols that can be used to create strings, a collection of production rules that expand each symbol into a larger string of symbols, an initial \"axiom\" string from which to begin construction, and a mechanism for translating the generated strings into geometric structures. This sequence can be used later by a reader for procedural generation purposes.",
   "version": "1.0.2",
-  "unity": "2020.3",
+  "unity": "2019.4",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -15,7 +15,7 @@
   },
   "dependencies": {},
   "keywords": [
-    ""
+    "LSystem", "Procedural generation"
   ],
   "samples": [
     {
